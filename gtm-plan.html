@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Plan — Algomarketing | MDB Growth Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a14;
+    --surface: #0d1520;
+    --surface2: #111d2e;
+    --border: #1a2840;
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --accent3: #8b5cf6;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --green: #10b981;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(6,10,20,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar-brand { font-weight: 700; font-size: 15px; }
+  .topbar-brand span { color: var(--accent); }
+  .topbar-cta {
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .topbar-cta:hover { background: #2563eb; }
+
+  /* PAGE */
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 80px 80px;
+  }
+
+  /* HEADER */
+  .page-header {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    margin-bottom: 16px;
+  }
+  .page-title {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .page-sub {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 640px;
+  }
+  .page-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-item { font-size: 13px; color: var(--text-muted); }
+  .meta-item strong { color: var(--text); }
+
+  /* SECTION HEADING */
+  .section-heading {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    margin-bottom: 12px;
+    margin-top: 60px;
+  }
+  .section-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-bottom: 32px;
+  }
+
+  /* PILLARS */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .pillar-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.2s;
+  }
+  .pillar-card:hover { border-color: rgba(59,130,246,0.3); }
+  .pillar-card.full { grid-column: 1 / -1; }
+  .pillar-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .pillar-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .pillar-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .pillar-metrics {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .pillar-metric {
+    font-size: 13px;
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.15);
+    border-radius: 6px;
+    padding: 4px 10px;
+    color: var(--accent);
+  }
+
+  /* 10-DAY SEQUENCE */
+  .sequence-timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+  .sequence-timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border);
+  }
+  .seq-item {
+    position: relative;
+    margin-bottom: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+  .seq-item:hover { border-color: rgba(59,130,246,0.25); }
+  .seq-dot {
+    position: absolute;
+    left: -26px;
+    top: 22px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .seq-dot.email { background: var(--accent); }
+  .seq-dot.linkedin { background: var(--accent2); }
+  .seq-dot.call { background: var(--green); }
+  .seq-day {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .seq-action {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .seq-detail {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .seq-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 8px;
+  }
+  .seq-badge.email { background: rgba(59,130,246,0.15); color: var(--accent); }
+  .seq-badge.linkedin { background: rgba(6,182,212,0.15); color: var(--accent2); }
+  .seq-badge.review { background: rgba(139,92,246,0.15); color: var(--accent3); }
+  .seq-badge.call { background: rgba(16,185,129,0.15); color: var(--green); }
+
+  /* 12-WEEK ROADMAP */
+  .roadmap-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .roadmap-table th {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+  }
+  .roadmap-table td {
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    vertical-align: top;
+    color: var(--text-muted);
+  }
+  .roadmap-table tr:hover td { background: rgba(59,130,246,0.03); }
+  .roadmap-table td:first-child {
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    width: 100px;
+  }
+  .roadmap-table td:nth-child(2) { color: var(--text); }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+  .tag.build { background: rgba(59,130,246,0.12); color: var(--accent); }
+  .tag.launch { background: rgba(16,185,129,0.12); color: var(--green); }
+  .tag.scale { background: rgba(139,92,246,0.12); color: var(--accent3); }
+
+  /* REVENUE PROJECTION */
+  .projection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .projection-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .projection-period { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .projection-value { font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
+  .projection-label { font-size: 13px; color: var(--text-muted); }
+
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 60px;
+  }
+
+  @media (max-width: 768px) {
+    .page { padding: 80px 24px 60px; }
+    .topbar { padding: 14px 20px; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .projection-grid { grid-template-columns: 1fr; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-brand">MDB <span>Growth Capital</span></div>
+  <a href="https://cal.com/jean-m-8f4kbr/15min" target="_blank" class="topbar-cta">Book 15 Min</a>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="page-eyebrow">Go-to-Market Plan — Prepared for Oliver Hassell</div>
+    <h1 class="page-title">Algomarketing Enterprise Acquisition Plan</h1>
+    <p class="page-sub">5 pillars. 10-day outreach sequence. 12-week implementation roadmap. Built specifically for Algomarketing's situation — 10 years of referral-only growth, 119 employees, and a senior growth hire incoming.</p>
+    <div class="page-meta">
+      <div class="meta-item"><strong>Company:</strong> Algomarketing</div>
+      <div class="meta-item"><strong>Recipient:</strong> Oliver Hassell, Head of Sales and Marketing</div>
+      <div class="meta-item"><strong>Prepared:</strong> May 2026</div>
+      <div class="meta-item"><strong>Strategy:</strong> Jean Mundabi Fala, MDB Growth Capital</div>
+    </div>
+  </div>
+
+  <!-- PILLARS -->
+  <div class="section-heading">Part 1 — The 5 Pillars</div>
+  <div class="section-title">What MDB installs for Algomarketing</div>
+  <p class="section-sub">Each pillar addresses a specific structural gap identified in the Algomarketing research. Taken together, they replace referral-dependent growth with a systematic enterprise acquisition channel.</p>
+
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-num">Pillar 1</div>
+      <h3>Enterprise Account Database</h3>
+      <p>30 scored and ranked enterprise accounts across Algomarketing's Ideal Client Profile. Buying signal data (new CMO hiring, transformation programme signals, headcount freeze announcements) included for each account. Updated monthly.</p>
+      <div class="pillar-metrics">
+        <span class="pillar-metric">30 accounts</span>
+        <span class="pillar-metric">Week 1 to 2</span>
+        <span class="pillar-metric">Owned permanently</span>
+      </div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">Pillar 2</div>
+      <h3>Personalised Outreach Sequences</h3>
+      <p>2-sequence personalised outreach for each account segment. Email 1: Trigger angle (new CMO window). Email 2: Friction angle (HelloKindred vs Algomarketing authority gap). Each sequence tested for PSS score 85 or above before sending.</p>
+      <div class="pillar-metrics">
+        <span class="pillar-metric">2 sequences per segment</span>
+        <span class="pillar-metric">PSS 85+ required</span>
+        <span class="pillar-metric">Week 2 to 4</span>
+      </div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">Pillar 3</div>
+      <h3>Authority Engine (Content + Nurture)</h3>
+      <p>LinkedIn content flywheel targeting enterprise CMO pain topics (AI marketing talent, headcount freeze workarounds, embedded versus permanent trade-offs). 20-week email nurture sequence for opted-in prospects. Built once, runs permanently.</p>
+      <div class="pillar-metrics">
+        <span class="pillar-metric">Weekly LinkedIn posts</span>
+        <span class="pillar-metric">20-week nurture</span>
+        <span class="pillar-metric">Week 3 to 5</span>
+      </div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">Pillar 4</div>
+      <h3>Micro-Budget Retargeting</h3>
+      <p>£5 to £10 per day LinkedIn retargeting to re-engage anyone who has visited the Algomarketing website, opened a nurture email, or engaged with a LinkedIn post in the last 30 days. Keeps Algomarketing visible in enterprise CMO feeds between active touchpoints.</p>
+      <div class="pillar-metrics">
+        <span class="pillar-metric">£5 to £10 per day</span>
+        <span class="pillar-metric">LinkedIn feed</span>
+        <span class="pillar-metric">Week 4 onwards</span>
+      </div>
+    </div>
+    <div class="pillar-card full">
+      <div class="pillar-num">Pillar 5</div>
+      <h3>Lead Scoring and Hot Prospect Alerts</h3>
+      <p>Cold, warm, and hot bucket system wired into Algomarketing's CRM. Hot criteria: visited the services page or pricing page, opened 3 or more nurture emails, and engaged with a LinkedIn post in the last 30 days. Oliver's commercial team receives an alert only when a prospect crosses the threshold — not for every engagement signal. Means the sales team focuses on intent, not noise.</p>
+      <div class="pillar-metrics">
+        <span class="pillar-metric">3-tier scoring</span>
+        <span class="pillar-metric">CRM-wired alerts</span>
+        <span class="pillar-metric">Week 4 to 6</span>
+        <span class="pillar-metric">Owned permanently</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10-DAY SEQUENCE -->
+  <div class="section-heading">Part 2 — The 10-Day Outreach Sequence</div>
+  <div class="section-title">How Algomarketing reaches Oliver Hassell</div>
+  <p class="section-sub">The day-by-day multi-channel sequence MDB uses to open enterprise conversations. Each step is distinct. No repetition. No generic follow-ups.</p>
+
+  <div class="sequence-timeline">
+    <div class="seq-item">
+      <div class="seq-dot email"></div>
+      <div class="seq-day">Day 0</div>
+      <div class="seq-action">Email 1 — Trigger Angle <span class="seq-badge email">Email</span></div>
+      <div class="seq-detail">Subject: "New CMO window" — PSS 88. Trigger email referencing the 30-company enterprise target list. Delivery CTA: "I can send the list over." References specific companies in an active evaluation window. 103 words.</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-dot linkedin"></div>
+      <div class="seq-day">Day 1</div>
+      <div class="seq-action">LinkedIn Connection Request <span class="seq-badge linkedin">LinkedIn</span></div>
+      <div class="seq-detail">Personalised connection note: references the email sent yesterday. Short — 2 sentences. References Algomarketing's 10-year track record and the authority gap finding. No pitch in the note itself.</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-dot linkedin"></div>
+      <div class="seq-day">Day 3</div>
+      <div class="seq-action">LinkedIn Direct Message (if connected) <span class="seq-badge linkedin">LinkedIn</span></div>
+      <div class="seq-detail">If Oliver accepted the connection: short DM referencing the research package. "Built the full enterprise target list and an Authority Engine diagnosis specifically for Algomarketing — happy to share both." Link to the GitHub Pages package.</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-dot email"></div>
+      <div class="seq-day">Day 5</div>
+      <div class="seq-action">Email 2 — Friction Angle <span class="seq-badge email">Email</span></div>
+      <div class="seq-detail">Subject: "HelloKindred vs Algomarketing" — PSS 86. Friction angle comparing HelloKindred's content authority against Algomarketing's gap. Asset CTA: "Built the target list already: [LINK]." 112 words. Different angle from Email 1 — competitive gap rather than timing trigger.</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-dot linkedin"></div>
+      <div class="seq-day">Day 7</div>
+      <div class="seq-action">LinkedIn Post Engagement <span class="seq-badge linkedin">LinkedIn</span></div>
+      <div class="seq-detail">If Oliver has posted anything in the last 30 days: a substantive comment (2 to 3 sentences, adds a specific observation or data point). Not a vanity like. Not "Great post." This is about visibility in Oliver's notifications before the final follow-up.</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-dot linkedin"></div>
+      <div class="seq-day">Day 10</div>
+      <div class="seq-action">LinkedIn Breakup Message <span class="seq-badge linkedin">LinkedIn</span></div>
+      <div class="seq-detail">Short final message. "Last one from me — if the timing is wrong, I understand completely. The enterprise target list and the Authority Engine diagnosis are there when you want them. Here is the link: [URL]." No ask. Just access.</div>
+    </div>
+  </div>
+
+  <!-- 12-WEEK ROADMAP -->
+  <div class="section-heading">Part 3 — The 12-Week Roadmap</div>
+  <div class="section-title">What happens when Algomarketing says yes</div>
+  <p class="section-sub">Week-by-week implementation plan from engagement start to live channel. Infrastructure built before the senior growth hire joins.</p>
+
+  <table class="roadmap-table">
+    <thead>
+      <tr>
+        <th>Week</th>
+        <th>Primary Activity</th>
+        <th>Output</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Week 1 <span class="tag build">Build</span></td>
+        <td>Enterprise account database build. Score and rank 30 accounts against Ideal Client Profile. Assign buying signal classification to each.</td>
+        <td>Scored 30-company database with buying signal data</td>
+        <td>MDB</td>
+      </tr>
+      <tr>
+        <td>Week 2 <span class="tag build">Build</span></td>
+        <td>Decision-maker contact research for Tier 1 accounts (15 companies). Verify names, roles, and email addresses. Build outreach copy for each segment.</td>
+        <td>15 verified contacts with personalised outreach copy</td>
+        <td>MDB</td>
+      </tr>
+      <tr>
+        <td>Week 3 <span class="tag build">Build</span></td>
+        <td>Authority Engine foundation: LinkedIn content calendar (8 weeks ahead), 20-week email nurture sequence draft, retargeting audience setup. All reviewed and signed off by Oliver before going live.</td>
+        <td>LinkedIn calendar, 20 email drafts, retargeting audiences</td>
+        <td>MDB + Oliver review</td>
+      </tr>
+      <tr>
+        <td>Week 4 <span class="tag launch">Launch</span></td>
+        <td>First outreach sequences deployed to Tier 1 accounts. LinkedIn content programme starts. Email 1 of nurture sequence sent to opted-in list. Retargeting live.</td>
+        <td>Live outreach to 15 accounts. First LinkedIn post. Retargeting active.</td>
+        <td>MDB</td>
+      </tr>
+      <tr>
+        <td>Week 5 <span class="tag launch">Launch</span></td>
+        <td>Follow-up sequences for Tier 1 non-responders. Tier 2 outreach begins (15 accounts). Lead scoring system installed in CRM. Hot prospect alerts configured.</td>
+        <td>30 active outreach accounts. Lead scoring live.</td>
+        <td>MDB</td>
+      </tr>
+      <tr>
+        <td>Week 6 <span class="tag launch">Launch</span></td>
+        <td>First reply handling and qualification. Initial hot prospects identified by lead scoring. First new enterprise conversations beginning. Oliver's commercial team briefed on hot prospect criteria.</td>
+        <td>First qualified conversations. Commercial team briefing complete.</td>
+        <td>Oliver + MDB</td>
+      </tr>
+      <tr>
+        <td>Week 7 to 8 <span class="tag launch">Launch</span></td>
+        <td>Senior Growth Manager joins (expected timeline per JD). Infrastructure already live — they manage a running programme rather than building from scratch. LinkedIn now 4 posts in, nurture sequence at week 4.</td>
+        <td>Growth hire onboarded to live programme on day one</td>
+        <td>Oliver + Growth Hire + MDB</td>
+      </tr>
+      <tr>
+        <td>Week 9 to 10 <span class="tag scale">Scale</span></td>
+        <td>Expansion to second 30-company account list. Analyse which outreach angle is performing (Trigger vs Friction). A/B signals from LinkedIn content. Email nurture open rates reviewed — trim underperforming emails.</td>
+        <td>Second wave database ready. Sequence performance data.</td>
+        <td>Growth Hire + MDB</td>
+      </tr>
+      <tr>
+        <td>Week 11 <span class="tag scale">Scale</span></td>
+        <td>Conversion tracking: how many outreach conversations became discovery calls. How many discovery calls became proposals. Pipeline visibility for Oliver to report to Yomi Tejumola.</td>
+        <td>First pipeline report. Mandate forecast for Q3 board reporting.</td>
+        <td>Oliver</td>
+      </tr>
+      <tr>
+        <td>Week 12 <span class="tag scale">Scale</span></td>
+        <td>Full channel review. What is working, what is not. Refine Ideal Client Profile based on which accounts are responding. Expand to third account batch. Authority Engine now at month 3 — first organic inbound signals starting.</td>
+        <td>Channel review report. Refined Ideal Client Profile. Organic inbound beginning.</td>
+        <td>Oliver + MDB</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- REVENUE PROJECTION -->
+  <div class="section-heading">Part 4 — Revenue Projection</div>
+  <div class="section-title">What systematic enterprise acquisition delivers for Algomarketing</div>
+  <p class="section-sub">Based on Algomarketing's confirmed billing range (£30,000 to £100,000 per account annually) and the 30 accounts in the Tier 1 and Tier 2 lead list.</p>
+
+  <div class="projection-grid">
+    <div class="projection-card">
+      <div class="projection-period">Month 6</div>
+      <div class="projection-value">1,000 to 2,000</div>
+      <div class="projection-label">LinkedIn followers in Algomarketing's enterprise CMO target audience. First organic inbound inquiries.</div>
+    </div>
+    <div class="projection-card">
+      <div class="projection-period">Month 6 to 9</div>
+      <div class="projection-value">2 to 4</div>
+      <div class="projection-label">New enterprise mandates from systematic outbound. At £30,000 to £100,000 per account: £60,000 to £400,000 in new annual billings.</div>
+    </div>
+    <div class="projection-card">
+      <div class="projection-period">Month 12</div>
+      <div class="projection-value">20 to 40</div>
+      <div class="projection-label">Hot prospects identified per quarter by lead scoring. Consistent organic inbound from enterprise CMO audience. Channel running independently of any one person.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div>Strategy and GTM research by Jean Mundabi Fala, MDB Growth Capital</div>
+  <div>Prepared for Oliver Hassell, Algomarketing — May 2026</div>
+</footer>
+
+</body>
+</html>

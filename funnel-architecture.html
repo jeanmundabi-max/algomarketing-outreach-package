@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funnel Architecture — Algomarketing | MDB Growth Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a14;
+    --surface: #0d1520;
+    --surface2: #111d2e;
+    --border: #1a2840;
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --accent3: #8b5cf6;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --green: #10b981;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .topbar {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(6,10,20,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar-brand { font-weight: 700; font-size: 15px; }
+  .topbar-brand span { color: var(--accent); }
+  .topbar-cta {
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .topbar-cta:hover { background: #2563eb; }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 80px 80px;
+  }
+
+  .page-header {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent2); margin-bottom: 16px; }
+  .page-title { font-size: clamp(30px, 4vw, 48px); font-weight: 800; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
+  .page-sub { font-size: 18px; color: var(--text-muted); max-width: 640px; }
+  .page-meta { display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+  .meta-item { font-size: 13px; color: var(--text-muted); }
+  .meta-item strong { color: var(--text); }
+
+  /* FUNNEL CASCADE TABLE */
+  .cascade-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 60px;
+  }
+  .cascade-table th {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 14px 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+  .cascade-table th:first-child { width: 100px; }
+  .cascade-table td {
+    border: 1px solid var(--border);
+    padding: 20px;
+    vertical-align: top;
+    font-size: 14px;
+  }
+  .cascade-table tr:hover td { background: rgba(59,130,246,0.02); }
+  .stage-cell {
+    font-weight: 800;
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .stage-tofu { color: var(--accent2); background: rgba(6,182,212,0.06); border-right: 2px solid rgba(6,182,212,0.3); }
+  .stage-mofu { color: var(--accent); background: rgba(59,130,246,0.06); border-right: 2px solid rgba(59,130,246,0.3); }
+  .stage-bofu { color: var(--green); background: rgba(16,185,129,0.06); border-right: 2px solid rgba(16,185,129,0.3); }
+  .stage-close { color: var(--amber); background: rgba(245,158,11,0.06); border-right: 2px solid rgba(245,158,11,0.3); }
+
+  .happens-item { margin-bottom: 6px; font-size: 13px; }
+  .happens-item::before { content: '→ '; color: var(--text-muted); }
+
+  .install-list { list-style: none; }
+  .install-list li {
+    padding: 4px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .install-list li .check { color: var(--green); flex-shrink: 0; }
+
+  .missing-list { list-style: none; }
+  .missing-list li {
+    padding: 4px 0;
+    font-size: 13px;
+    color: var(--red);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .missing-list li .x { color: var(--red); flex-shrink: 0; }
+
+  /* LEAK MAP */
+  .section-heading { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent2); margin-bottom: 12px; margin-top: 60px; }
+  .section-title { font-size: 28px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; }
+  .section-sub { font-size: 16px; color: var(--text-muted); max-width: 600px; margin-bottom: 32px; }
+
+  .leak-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .leak-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .leak-stage { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 8px; }
+  .leak-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--red); }
+  .leak-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+  .leak-fix { font-size: 13px; color: var(--green); }
+  .leak-fix::before { content: '↗ Fix: '; font-weight: 700; }
+
+  /* GROWTH LOOPS */
+  .loops-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .loop-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .loop-num { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+  .loop-title { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
+  .loop-steps { list-style: none; }
+  .loop-steps li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .loop-steps li:last-child { border-bottom: none; }
+  .loop-steps li .arrow { color: var(--accent); flex-shrink: 0; }
+
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 60px;
+  }
+
+  @media (max-width: 768px) {
+    .page { padding: 80px 24px 60px; }
+    .topbar { padding: 14px 20px; }
+    .leak-grid, .loops-grid { grid-template-columns: 1fr; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .cascade-table { font-size: 12px; }
+    .cascade-table td, .cascade-table th { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">MDB <span>Growth Capital</span></div>
+  <a href="https://cal.com/jean-m-8f4kbr/15min" target="_blank" class="topbar-cta">Book 15 Min</a>
+</div>
+
+<div class="page">
+
+  <div class="page-header">
+    <div class="page-eyebrow">Funnel Architecture — Prepared for Oliver Hassell</div>
+    <h1 class="page-title">Algomarketing Funnel Cascade</h1>
+    <p class="page-sub">Top of Funnel to bottom of funnel analysis. What happens at each stage today. What MDB installs. What is missing and what that costs Algomarketing in missed enterprise mandates.</p>
+    <div class="page-meta">
+      <div class="meta-item"><strong>Company:</strong> Algomarketing</div>
+      <div class="meta-item"><strong>Framework:</strong> Funnel Cascade — Attraction, Alignment, Activation</div>
+      <div class="meta-item"><strong>Prepared:</strong> May 2026</div>
+    </div>
+  </div>
+
+  <!-- FUNNEL CASCADE TABLE -->
+  <div class="section-heading">The Funnel Cascade</div>
+  <div class="section-title">Top of Funnel to sale — what happens, what we install, what is missing</div>
+  <p class="section-sub">Four stages. Each stage has a current state, an MDB installation, and a leak. The leak at each stage is what is costing Algomarketing enterprise mandates.</p>
+
+  <table class="cascade-table">
+    <thead>
+      <tr>
+        <th>Stage</th>
+        <th>What Happens Today</th>
+        <th>What MDB Installs</th>
+        <th>What Is Missing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="stage-cell stage-tofu">TOP OF FUNNEL<br><small>Attraction</small></td>
+        <td>
+          <div class="happens-item">Enterprise CMOs search for embedded marketing talent suppliers</div>
+          <div class="happens-item">They find HelloKindred's industry reports and Stopgap's blog content</div>
+          <div class="happens-item">Algomarketing does not appear in organic search for "enterprise embedded marketing talent UK"</div>
+          <div class="happens-item">Referrals bring Algomarketing into conversations — but only when the referring contact thinks of it</div>
+          <div class="happens-item">New CMO hires restructure supplier lists in first 90 days — Algomarketing misses most of these windows</div>
+        </td>
+        <td>
+          <ul class="install-list">
+            <li><span class="check">✓</span> LinkedIn content flywheel — weekly posts targeting enterprise CMO pain topics</li>
+            <li><span class="check">✓</span> Buying signal tracking — alerts when target accounts hire a new CMO or VP Marketing</li>
+            <li><span class="check">✓</span> 30-company enterprise account database with buying signal classifications</li>
+            <li><span class="check">✓</span> Personalised outreach sequences for each account segment</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list">
+            <li><span class="x">✕</span> No content programme — Algomarketing is invisible between referral touchpoints</li>
+            <li><span class="x">✕</span> No systematic Account Based Marketing against named enterprise targets</li>
+            <li><span class="x">✕</span> No new CMO window tracking — missing the highest-value procurement trigger</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="stage-cell stage-mofu">MIDDLE OF FUNNEL<br><small>Alignment</small></td>
+        <td>
+          <div class="happens-item">Prospect has been referred or replied to an outreach email</div>
+          <div class="happens-item">First conversation happens — Algomarketing presents its model</div>
+          <div class="happens-item">Prospect says "not right now" — they are not in an active buying window</div>
+          <div class="happens-item">Algomarketing has no systematic way to stay present with the non-active prospect</div>
+          <div class="happens-item">When the buying window opens 6 to 18 months later, the prospect calls whoever is most present in their memory</div>
+        </td>
+        <td>
+          <ul class="install-list">
+            <li><span class="check">✓</span> 20-week email nurture sequence — value-only emails to opted-in prospects over 5 months</li>
+            <li><span class="check">✓</span> Micro-budget retargeting — £5 to £10 per day LinkedIn to re-engage warm prospects</li>
+            <li><span class="check">✓</span> Lead scoring system — tracks engagement signals across email, LinkedIn, and website</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list">
+            <li><span class="x">✕</span> No nurture infrastructure — non-active prospects are lost after the first conversation</li>
+            <li><span class="x">✕</span> No retargeting — website visitors and email openers disappear with no re-engagement</li>
+            <li><span class="x">✕</span> No warm-to-hot signal tracking — the sales team does not know when to follow up</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="stage-cell stage-bofu">BOTTOM OF FUNNEL<br><small>Activation</small></td>
+        <td>
+          <div class="happens-item">Prospect is in an active buying window — they have a specific brief</div>
+          <div class="happens-item">Algomarketing gets the call — either via referral or because they have stayed present through the Authority Engine</div>
+          <div class="happens-item">Proposal presented — Algomarketing's AI-proficient model and 32-country compliance capability are genuine differentiators</div>
+          <div class="happens-item">Algomarketing wins this stage when it gets into the room — conversion rate from qualified conversation to mandate is strong</div>
+        </td>
+        <td>
+          <ul class="install-list">
+            <li><span class="check">✓</span> Hot prospect alerts — sales team notified when a prospect crosses the intent threshold</li>
+            <li><span class="check">✓</span> Account intelligence for each target account — CMO profile, transformation programme status, headcount freeze signals</li>
+            <li><span class="check">✓</span> Proposal support — MDB provides competitive intelligence and objection handling scripts</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list">
+            <li><span class="x">✕</span> The main missing piece is upstream — without Top of Funnel and Middle of Funnel infrastructure, fewer qualified prospects reach this stage</li>
+            <li><span class="x">✕</span> No proof content that enterprise CMOs can share internally to get procurement approval</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="stage-cell stage-close">SALE AND EXPANSION<br><small>Close and Retain</small></td>
+        <td>
+          <div class="happens-item">Mandate won — embedded specialist deployed, contract signed</div>
+          <div class="happens-item">Delivery quality is consistently strong — Google, Zoom, Stripe, OpenAI, Cisco are retained client evidence</div>
+          <div class="happens-item">Case studies exist but are not published systematically — they sit in internal documents and conversations</div>
+          <div class="happens-item">No systematic programme to turn successful mandates into public case studies that feed Top of Funnel</div>
+        </td>
+        <td>
+          <ul class="install-list">
+            <li><span class="check">✓</span> Case study extraction — MDB structures delivery wins into publishable case studies for LinkedIn and website</li>
+            <li><span class="check">✓</span> Expansion signal tracking — flags when existing clients post new roles or announce transformation programmes</li>
+            <li><span class="check">✓</span> Client logo and testimonial programme — converts delivery proof into content authority</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list">
+            <li><span class="x">✕</span> Strong delivery proof exists but is invisible — Google and Zoom case studies are not driving Top of Funnel visibility</li>
+            <li><span class="x">✕</span> No systematic programme to turn delivery wins into organic discovery assets</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- LEAK MAP -->
+  <div class="section-heading">The Leak Map</div>
+  <div class="section-title">Where Algomarketing loses enterprise mandates it would win</div>
+  <p class="section-sub">The AAA Diagnostic (Attraction, Alignment, Activation) identifies the four primary leaks. Each leak is a mandate lost before the first conversation happens.</p>
+
+  <div class="leak-grid">
+    <div class="leak-card">
+      <div class="leak-stage">Attraction — Top of Funnel</div>
+      <div class="leak-title">Leak 1: Invisible at the Research Stage</div>
+      <div class="leak-desc">Enterprise CMOs researching embedded marketing talent suppliers conduct 13 digital touchpoints before engaging a new partner. Algomarketing is present at touchpoint 13 (the referral). It is absent at touchpoints 1 through 12. Every mandate that begins with a Google search or a LinkedIn discovery is decided before Algomarketing enters the room.</div>
+      <div class="leak-fix">LinkedIn content flywheel + organic search presence via consistent long-form posts targeting enterprise CMO search terms.</div>
+    </div>
+    <div class="leak-card">
+      <div class="leak-stage">Attraction — New CMO Window</div>
+      <div class="leak-title">Leak 2: Missing the Highest-Value Procurement Trigger</div>
+      <div class="leak-desc">When a new CMO or VP Marketing joins a target enterprise account, they restructure their preferred supplier list in the first 30 to 90 days. This is the window when a firm with no prior relationship can get shortlisted. Algomarketing is not systematically monitoring this trigger across its 30 target accounts — missing the best timing window in enterprise procurement.</div>
+      <div class="leak-fix">Buying signal tracking system flags new marketing leadership appointments across the 30-company target list within 48 hours of announcement.</div>
+    </div>
+    <div class="leak-card">
+      <div class="leak-stage">Alignment — Middle of Funnel</div>
+      <div class="leak-title">Leak 3: Non-Active Prospects Forget Algomarketing Exists</div>
+      <div class="leak-desc">The enterprise procurement cycle for a major staffing relationship runs 6 to 18 months. A prospect who has one conversation in month 1 but is not in a buying window until month 12 needs something to bridge that gap. Without a nurture sequence, the prospect forgets. When the buying window opens, they call whoever has stayed present — which is usually HelloKindred.</div>
+      <div class="leak-fix">20-week email nurture sequence (value-only, no pitches) keeps Algomarketing present with non-active prospects for 5 months. Retargeting extends visibility for another 30 to 90 days beyond that.</div>
+    </div>
+    <div class="leak-card">
+      <div class="leak-stage">Activation — Warm Prospects</div>
+      <div class="leak-title">Leak 4: Warm Prospects Indistinguishable from Cold</div>
+      <div class="leak-desc">Enterprise marketing leaders who have engaged with Algomarketing content, attended an event, or replied to a cold email are warm prospects. Without a lead scoring system, they are indistinguishable from cold prospects. When the buying window opens, the commercial team does not know who to prioritise — so they work the full list, missing the warm signals that indicate readiness to engage.</div>
+      <div class="leak-fix">Lead scoring system categorises the database into cold, warm, and hot. Hot prospect alerts notify Oliver's team only when a prospect has demonstrated clear intent — visited services page, opened 3 or more nurture emails, and engaged with a LinkedIn post in the last 30 days.</div>
+    </div>
+  </div>
+
+  <!-- 3 GROWTH LOOPS -->
+  <div class="section-heading">The 3 Growth Loops</div>
+  <div class="section-title">How the infrastructure compounds over time</div>
+  <p class="section-sub">Each loop feeds the next. The first is the core acquisition loop. The second is the credibility and case study loop. The third is the test, measure, learn, and scale loop.</p>
+
+  <div class="loops-grid">
+    <div class="loop-card">
+      <div class="loop-num">Loop 1 — Core Acquisition</div>
+      <div class="loop-title">Outbound to Mandate to Referral</div>
+      <ul class="loop-steps">
+        <li><span class="arrow">→</span> Enterprise account database signals a buying window (new CMO hire)</li>
+        <li><span class="arrow">→</span> Personalised outreach sequence sent — Trigger angle, timing-specific</li>
+        <li><span class="arrow">→</span> Conversation booked, proposal presented, mandate won</li>
+        <li><span class="arrow">→</span> Delivery quality turns the new client into a reference</li>
+        <li><span class="arrow">→</span> Reference generates a referral to a second enterprise account</li>
+        <li><span class="arrow">→</span> Referral adds a verified contact to the database for the next outreach cycle</li>
+        <li><span class="arrow">→</span> Loop compounds: each mandate strengthens the proof base for the next</li>
+      </ul>
+    </div>
+    <div class="loop-card">
+      <div class="loop-num">Loop 2 — Credibility Engine</div>
+      <div class="loop-title">Delivery to Case Study to Inbound</div>
+      <ul class="loop-steps">
+        <li><span class="arrow">→</span> Mandate delivered — specific results documented (time to deploy, output metrics, cost vs permanent hire)</li>
+        <li><span class="arrow">→</span> Case study extracted and published — LinkedIn post, website case study page</li>
+        <li><span class="arrow">→</span> Enterprise CMO reading the case study recognises their own situation</li>
+        <li><span class="arrow">→</span> Organic inbound inquiry — they reach out before being outreached to</li>
+        <li><span class="arrow">→</span> New mandate won from inbound — zero outbound cost for this account</li>
+        <li><span class="arrow">→</span> Inbound account becomes a new case study — loop repeats at higher authority level</li>
+        <li><span class="arrow">→</span> HelloKindred's authority gap narrows as Algomarketing's published proof base grows</li>
+      </ul>
+    </div>
+    <div class="loop-card">
+      <div class="loop-num">Loop 3 — Test and Scale</div>
+      <div class="loop-title">Signal to Learning to Better Signal</div>
+      <ul class="loop-steps">
+        <li><span class="arrow">→</span> Outreach sequences deployed across 30 accounts in two segments</li>
+        <li><span class="arrow">→</span> Email open rates, reply rates, and conversion rates measured per segment</li>
+        <li><span class="arrow">→</span> Highest-performing angle identified (Trigger vs Friction vs Comparison)</li>
+        <li><span class="arrow">→</span> Winning angle scaled to the next 30-account batch</li>
+        <li><span class="arrow">→</span> Lead scoring data identifies which account characteristics produce the hottest prospects</li>
+        <li><span class="arrow">→</span> Ideal Client Profile refined — tighter targeting, higher reply rates</li>
+        <li><span class="arrow">→</span> Each 30-day cycle produces better signals than the last — channel gets sharper, not weaker</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div>Strategy and GTM research by Jean Mundabi Fala, MDB Growth Capital</div>
+  <div>Prepared for Oliver Hassell, Algomarketing — May 2026</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trusted by 200+ enterprise companies — Algomarketing | AI-Proficient Embedded Marketing Talent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a14;
+    --surface: #0d1520;
+    --surface2: #111d2e;
+    --border: #1a2840;
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --accent3: #8b5cf6;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --green: #10b981;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* BUYING WINDOW BANNER */
+  .bw-banner {
+    position: fixed; top:0; left:0; right:0; z-index:200;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px 24px;
+    letter-spacing: 0.3px;
+  }
+  .bw-banner span { opacity: 0.85; font-weight: 400; margin: 0 16px; }
+
+  /* TOPBAR */
+  .topbar {
+    position: fixed; top:32px; left:0; right:0; z-index:100;
+    background: rgba(6,10,20,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar-brand { font-weight: 700; font-size: 16px; color: var(--text); }
+  .topbar-brand span { color: var(--accent); }
+  .topbar-links { display:flex; gap:32px; align-items:center; }
+  .topbar-links a { color: var(--text-muted); text-decoration:none; font-size:14px; font-weight:500; transition:color 0.2s; }
+  .topbar-links a:hover { color: var(--text); }
+  .topbar-cta {
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 9px 22px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .topbar-cta:hover { background: #2563eb; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(59,130,246,0.4); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 160px 80px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -100px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 450px; height: 450px;
+    background: radial-gradient(circle, rgba(6,182,212,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    background: rgba(6,182,212,0.10);
+    border: 1px solid rgba(6,182,212,0.25);
+    padding: 7px 16px;
+    border-radius: 100px;
+    width: fit-content;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 5vw, 68px);
+    font-weight: 800;
+    line-height: 1.08;
+    max-width: 820px;
+    margin-bottom: 28px;
+    letter-spacing: -1.5px;
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 20px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-bottom: 44px;
+    line-height: 1.6;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(59,130,246,0.4); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-proof {
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 56px;
+    flex-wrap: wrap;
+  }
+  .hero-stat .num { font-size: 32px; font-weight: 800; color: var(--accent); }
+  .hero-stat .label { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+  /* MARQUEE */
+  .marquee-section {
+    padding: 22px 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 56px;
+    animation: scroll 30s linear infinite;
+    width: max-content;
+  }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .marquee-item::before { content: '●'; color: var(--accent); font-size: 8px; }
+
+  /* SECTIONS */
+  .section {
+    padding: 90px 80px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .section h2 {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+  .section p { color: var(--text-muted); max-width: 640px; margin-bottom: 16px; }
+
+  /* PAIN SECTIONS */
+  .pain-section {
+    padding: 80px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .pain-inner { max-width: 1120px; margin: 0 auto; }
+  .pain-quote {
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text);
+    border-left: 4px solid var(--accent);
+    padding-left: 28px;
+    margin-bottom: 24px;
+    font-style: italic;
+    max-width: 820px;
+  }
+  .pain-cost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: var(--red);
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  /* COMPARE TABLE */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 40px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .compare-col { padding: 0; }
+  .compare-header {
+    padding: 18px 28px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .compare-header.bad { background: rgba(239,68,68,0.12); color: var(--red); }
+  .compare-header.good { background: rgba(16,185,129,0.12); color: var(--green); }
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+  .compare-cell {
+    padding: 18px 28px;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .compare-cell.bad { background: rgba(239,68,68,0.04); color: var(--text-muted); }
+  .compare-cell.good { background: rgba(16,185,129,0.04); color: var(--text); }
+  .compare-icon { flex-shrink: 0; margin-top: 2px; font-size: 16px; }
+
+  /* MECHANISM */
+  .mechanism-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .step-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .step-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .step-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .step-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  /* VSL */
+  .vsl-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px;
+  }
+  .vsl-inner { max-width: 1120px; margin: 0 auto; }
+  .vsl-placeholder {
+    aspect-ratio: 16/9;
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--surface2);
+    border: 2px dashed var(--border);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .vsl-placeholder:hover { border-color: var(--accent); }
+  .vsl-play {
+    width: 72px; height: 72px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 8px 32px rgba(59,130,246,0.4);
+  }
+  .vsl-label { color: var(--text-muted); font-size: 15px; font-weight: 500; }
+  .vsl-title { color: var(--text); font-weight: 700; font-size: 18px; text-align:center; max-width:480px; }
+
+  /* VIDEO TESTIMONIALS */
+  .video-testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:48px; }
+  @media(max-width:768px){ .video-testi-grid{grid-template-columns:1fr;} }
+  .video-testi-card { display:flex; flex-direction:column; gap:14px; }
+  .vt-thumb {
+    position:relative; aspect-ratio:16/9;
+    background:linear-gradient(135deg, #060a14 0%, #0d1520 55%, #060a14 100%);
+    border-radius:14px; overflow:hidden; cursor:pointer;
+    transition:filter 0.22s; border:1px solid rgba(59,130,246,0.15);
+  }
+  .vt-thumb:hover { filter:brightness(1.13); }
+  .vt-thumb:hover .vt-play { transform:translate(-50%,-50%) scale(1.09); }
+  .vt-initials {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-62%);
+    width:60px; height:60px; border-radius:50%;
+    background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.25);
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; font-weight:700; color:rgba(255,255,255,0.45); letter-spacing:1px;
+  }
+  .vt-play {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:60px; height:60px; background:rgba(59,130,246,0.22);
+    border:2px solid rgba(255,255,255,0.65); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; color:#fff; transition:transform 0.22s;
+    backdrop-filter:blur(4px);
+  }
+  .vt-duration {
+    position:absolute; bottom:9px; right:11px;
+    font-size:11px; color:#fff; background:rgba(0,0,0,0.52);
+    padding:2px 7px; border-radius:4px; letter-spacing:0.4px;
+  }
+  .vt-name-bar {
+    position:absolute; bottom:0; left:0; right:0;
+    padding:7px 13px; font-size:12px; color:rgba(255,255,255,0.78);
+    background:linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+    font-family: monospace;
+  }
+  .vt-quote { font-style:italic; font-size:15px; line-height:1.67; margin:0; color:var(--text); }
+  .vt-attr { display:flex; flex-direction:column; gap:3px; }
+  .vt-attr strong { font-size:14px; font-weight:600; color:var(--text); }
+  .vt-attr span { font-size:13px; color:var(--text-muted); }
+
+  /* QUALIFICATION */
+  .qual-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 48px;
+    margin-top: 48px;
+    align-items: start;
+  }
+  .qual-profiles { display: flex; flex-direction: column; gap: 20px; }
+  .qual-profile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: border-color 0.2s;
+  }
+  .qual-profile.fit { border-left: 3px solid var(--green); }
+  .qual-profile.nofit { border-left: 3px solid var(--red); }
+  .qual-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .qual-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+  .qual-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .qual-nofit-box {
+    background: rgba(239,68,68,0.07);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 12px;
+    padding: 24px;
+    align-self: flex-start;
+  }
+  .qual-nofit-title { font-weight: 700; color: var(--red); margin-bottom: 10px; font-size: 15px; }
+  .qual-nofit-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  /* REVENUE GAP */
+  .gap-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .gap-table th {
+    padding: 16px 24px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .gap-table td {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    font-size: 16px;
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .gap-table tr:last-child td { border-bottom: none; }
+  .gap-table .gap-cost { color: var(--red); font-weight: 700; }
+  .gap-table tr:hover td { background: var(--surface2); }
+
+  /* OFFER */
+  .offer-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 90px 80px;
+  }
+  .offer-inner { max-width: 1120px; margin: 0 auto; }
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .offer-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .offer-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .offer-card-icon { font-size: 28px; margin-bottom: 16px; }
+  .offer-card-title { font-weight: 700; font-size: 17px; margin-bottom: 10px; }
+  .offer-card-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+  .offer-card-pain {
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    font-style: italic;
+  }
+  .offer-card-pain strong { color: var(--red); font-style: normal; }
+
+  /* TIMELINE */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+  .timeline-item {
+    display: flex;
+    gap: 28px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-dot {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--accent);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .timeline-content { flex: 1; padding-top: 8px; }
+  .timeline-period {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .timeline-title { font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+  .timeline-desc { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+  /* FAQ */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: var(--accent2); }
+  .faq-q {
+    padding: 22px 28px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-q::after { content: '+'; font-size: 22px; color: var(--accent); flex-shrink: 0; }
+  .faq-a {
+    padding: 0 28px 22px;
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* GUARANTEE */
+  .guarantee-section {
+    background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(6,182,212,0.06));
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px;
+    text-align: center;
+  }
+  .guarantee-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(16,185,129,0.12);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: var(--green);
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+  .guarantee-inner { max-width: 700px; margin: 0 auto; }
+  .guarantee-inner h2 { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
+  .guarantee-inner p { font-size: 18px; color: var(--text-muted); line-height: 1.7; }
+
+  /* FINAL CTA */
+  .final-cta {
+    padding: 100px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta-inner { max-width: 700px; margin: 0 auto; position: relative; }
+  .final-cta h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.5px; }
+  .final-cta p { font-size: 18px; color: var(--text-muted); margin-bottom: 36px; line-height: 1.6; }
+  .final-cta .btn-primary { font-size: 18px; padding: 20px 48px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 28px 80px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .topbar { padding: 12px 20px; }
+    .topbar-links { display: none; }
+    .hero, .section, .pain-section, .vsl-section, .offer-section, .guarantee-section, .final-cta { padding-left: 24px; padding-right: 24px; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .compare-row { grid-template-columns: 1fr; }
+    .qual-grid { grid-template-columns: 1fr; }
+    .hero-proof { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BUYING WINDOW BANNER -->
+<div class="bw-banner">
+  New CMO hired this quarter? <span>|</span>
+  Headcount freeze with a project deadline? <span>|</span>
+  Platform migration requiring Marketo or Salesforce expertise? <span>|</span>
+  Transformation programme budget approved but team at capacity?
+</div>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <div class="topbar-brand">Algo<span>marketing</span></div>
+  <div class="topbar-links">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#testimonials">Results</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#book-demo" class="topbar-cta">Book a Demo</a>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="hero" id="hero">
+  <div class="hero-eyebrow reveal">
+    For CMOs and Marketing Directors scaling demand generation
+  </div>
+  <h1 class="reveal reveal-delay-1">
+    My Marketo specialist starts next week.<br>
+    <span class="highlight">Not in four months.</span>
+  </h1>
+  <p class="hero-sub reveal reveal-delay-2">
+    The headcount freeze is still in place. The transformation programme cannot wait 12 weeks for a permanent hire to clear notice. Algomarketing puts stack-ready, AI-proficient specialists inside your team — in three weeks. Productive from day one. No ramp-up tax.
+  </p>
+  <div class="hero-ctas reveal reveal-delay-3">
+    <a href="#book-demo" class="btn-primary">Book a Demo</a>
+    <a href="#how-it-works" class="btn-secondary">See how it works →</a>
+  </div>
+  <div class="hero-proof reveal reveal-delay-4">
+    <div class="hero-stat">
+      <div class="num">200+</div>
+      <div class="label">Enterprise mandates delivered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">3 wks</div>
+      <div class="label">From brief to embedded specialist</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">27</div>
+      <div class="label">Countries, globally compliant</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">50%</div>
+      <div class="label">Faster time-to-productivity vs traditional hire</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: VSL -->
+<section class="vsl-section" aria-label="Video — how Algomarketing works">
+  <div class="vsl-inner">
+    <p class="section-label reveal" style="text-align:center;">See it in action</p>
+    <h2 class="reveal reveal-delay-1" style="text-align:center; max-width:680px; margin:0 auto 40px;">How enterprise teams at Google and Stripe scale marketing output without adding permanent headcount</h2>
+    <div class="vsl-placeholder reveal reveal-delay-2">
+      <div class="vsl-play">▶</div>
+      <div class="vsl-title">Algomarketing — Enterprise Embedded Talent</div>
+      <div class="vsl-label">VIDEO_URL_GOES_HERE — 3 min case study</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PROOF MARQUEE -->
+<section class="marquee-section" aria-label="Client logos">
+  <div class="marquee-track">
+    <span class="marquee-item">Google</span>
+    <span class="marquee-item">Zoom</span>
+    <span class="marquee-item">Stripe</span>
+    <span class="marquee-item">OpenAI</span>
+    <span class="marquee-item">Cisco</span>
+    <span class="marquee-item">200+ Enterprise Companies</span>
+    <span class="marquee-item">Marketo Specialists</span>
+    <span class="marquee-item">Salesforce Marketing Cloud</span>
+    <span class="marquee-item">Adobe Campaign</span>
+    <span class="marquee-item">27 Countries</span>
+    <span class="marquee-item">Google</span>
+    <span class="marquee-item">Zoom</span>
+    <span class="marquee-item">Stripe</span>
+    <span class="marquee-item">OpenAI</span>
+    <span class="marquee-item">Cisco</span>
+    <span class="marquee-item">200+ Enterprise Companies</span>
+    <span class="marquee-item">Marketo Specialists</span>
+    <span class="marquee-item">Salesforce Marketing Cloud</span>
+    <span class="marquee-item">Adobe Campaign</span>
+    <span class="marquee-item">27 Countries</span>
+  </div>
+</section>
+
+<!-- SECTION 4: PAIN 01 -->
+<section class="pain-section" aria-label="Pain 01">
+  <div class="pain-inner">
+    <p class="section-label reveal">The reality most CMOs live with</p>
+    <div class="pain-quote reveal reveal-delay-1">
+      "Good headcount approval. Four months later I finally got budget. By the time the permanent hire starts, the campaign window is gone."
+    </div>
+    <p class="reveal reveal-delay-2" style="color:var(--text-muted); max-width:680px; margin-bottom:24px;">
+      Headcount approval cycles average 90 to 120 days. Permanent hire notice periods add another 8 to 12 weeks. A campaign window that opened in January is missed by April — before a single specialist is in the seat.
+    </p>
+    <div class="pain-cost reveal reveal-delay-3">
+      ⚠ Delayed campaign windows cost enterprise teams an average £800,000 in deferred revenue per quarter
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: PAIN 02 -->
+<section class="section" aria-label="Pain 02">
+  <p class="section-label reveal">The stack ramp-up tax</p>
+  <div class="pain-quote reveal reveal-delay-1">
+    "I hire a senior marketer permanently, they spend 90 days learning the stack, and by month four they are just getting productive. I cannot afford that timeline for critical projects."
+  </div>
+  <p class="reveal reveal-delay-2" style="margin-top:20px; max-width:680px;">
+    Every week your transformation programme sits idle costs roughly £50,000 in foregone efficiency. A 90-day stack ramp-up on a permanent hire means the programme delays by a full quarter before the work even starts.
+  </p>
+  <div class="pain-cost reveal reveal-delay-3" style="margin-top:24px;">
+    ⚠ A 90-day stack ramp-up on a senior permanent marketer costs £50,000 to £120,000 in lost programme velocity
+  </div>
+</section>
+
+<!-- SECTION 5B: PAIN 03 -->
+<section class="pain-section" aria-label="Pain 03">
+  <div class="pain-inner">
+    <p class="section-label reveal">The agency quality gap</p>
+    <div class="pain-quote reveal reveal-delay-1">
+      "The agency produces content but they do not understand our ICP or our positioning. I end up rewriting everything they send."
+    </div>
+    <p class="reveal reveal-delay-2" style="color:var(--text-muted); max-width:680px; margin-bottom:24px;">
+      Enterprise procurement teams do not evaluate suppliers based on content quality alone. They evaluate based on understanding. When the brief has to be rewritten, the time-to-productivity collapses — and the headcount justification for the engagement falls apart.
+    </p>
+    <div class="pain-cost reveal reveal-delay-3">
+      ⚠ Every week spent rewriting agency output is a week the programme is not moving
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: OLD WAY VS NEW WAY -->
+<section class="section" id="how-it-works" aria-label="Old way vs new way">
+  <p class="section-label reveal">The old model vs the embedded model</p>
+  <h2 class="reveal reveal-delay-1">Why the traditional approach keeps failing enterprise teams</h2>
+  <p class="reveal reveal-delay-2">Most enterprise marketing leaders have tried at least one of these. None of them solved the time-to-productivity problem.</p>
+
+  <div class="reveal reveal-delay-3">
+    <div class="compare-grid">
+      <div class="compare-header bad">❌ The Old Way</div>
+      <div class="compare-header good">✅ The New Way</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell bad"><span class="compare-icon">❌</span>We were trying to hit the Q4 pipeline target, but the traditional agency forced us into a brief-and-wait cycle. When the campaign window opened in October, we only had half-finished copy that did not speak to our enterprise buyers. That meant the window closed before a single account was touched. The truth is I spent more time rewriting agency output than running the programme I was hired to run.</div>
+      <div class="compare-cell good"><span class="compare-icon">✅</span>Now a stack-ready specialist is already inside the team before the campaign window opens. Q4 launched on schedule. Three enterprise accounts moved from unaware to in-conversation inside six weeks. The conversation changed from defending missed targets to presenting pipeline attributable to the programme.</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell bad"><span class="compare-icon">❌</span>We were trying to activate our ABM programme against the Top 50 accounts, but a headcount freeze meant we could not hire the Marketo specialist permanently. We briefed Hays. They sent four CVs — none above basic admin level. When the board reviewed ABM progress at the mid-year checkpoint, we had nothing to show. By the time we saw the issue, the decision had already been made to reprioritise the budget.</div>
+      <div class="compare-cell good"><span class="compare-icon">✅</span>Now the ABM programme is running against all 50 target accounts and I can see which ones are engaging. A stack-ready Marketo specialist was embedded in three weeks. The conversation changed from explaining why the programme had not started to showing engagement data the board had not seen before.</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell bad"><span class="compare-icon">❌</span>We were trying to staff up fast when the new CMO joined — she wanted to move in the first 90 days. We went through the permanent hire process. Twelve weeks of recruitment, a two-month notice period, then a 90-day stack ramp-up. When the CMO hit her first board review, the function was still being built. The part nobody says out loud is that I had promised her a running team and delivered a half-built one. I spent more time managing her expectations than delivering the programme.</div>
+      <div class="compare-cell good"><span class="compare-icon">✅</span>Now the marketing function is already running before a new CMO attends their first board review. Embedded specialists were in stand-ups by week three. The CMO could direct rather than build. The conversation changed from explaining delays to presenting a functioning function on schedule.</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell bad"><span class="compare-icon">❌</span>We were trying to run the Marketo migration on time, but using freelancers from the open market created compliance risk. Our procurement team blocked two candidates in a row. When the programme deadline arrived, we had logged zero migration progress. The transformation programme slipped by a full quarter. The truth is I spent more time managing procurement paperwork than running the migration I had committed to the board.</div>
+      <div class="compare-cell good"><span class="compare-icon">✅</span>Now compliance is cleared before the specialist is presented — IR35, misclassification documentation, and local labour law handled in days, not months. The Marketo migration completed one month ahead of deadline. The conversation changed from defending a slipped timeline to reporting an early delivery the board had not expected.</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell bad"><span class="compare-icon">❌</span>We were trying to build a sustainable marketing function, but we hired a senior specialist permanently. Eighteen months later, she left and took all platform knowledge with her. When the Finance Director asked for the ROI on the marketing headcount at the Q3 review, I had one person's LinkedIn profile and a restart on the recruitment process. The part nobody says out loud is I had told the board we were building something permanent and it turned out we were building something fragile. I spent more time defending the headcount decision than running the marketing function.</div>
+      <div class="compare-cell good"><span class="compare-icon">✅</span>Now embedded specialists operate with documented handover protocols managed by a named account manager — no knowledge walks out the door. Marketing output equivalent to four permanent hires is running at a third of the cost. The conversation changed from justifying headcount to showing compounding output that did not depend on any single person staying.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: MECHANISM -->
+<section class="section" aria-label="Mechanism — how Algomarketing works">
+  <p class="section-label reveal">The Algomarketing process</p>
+  <h2 class="reveal reveal-delay-1">How we deploy AI-proficient talent into your team — in three weeks</h2>
+  <p class="reveal reveal-delay-2">Five steps. No lengthy onboarding. No generic CVs. No compliance risk.</p>
+
+  <div class="mechanism-steps">
+    <div class="step-card reveal">
+      <div class="step-num">Step 01</div>
+      <div class="step-title">Brief us on the programme</div>
+      <div class="step-desc">Tell us your stack, your timeline, and what success looks like. 48 hours later, you have a shortlist of three specialists who have worked on programmes exactly like yours.</div>
+    </div>
+    <div class="step-card reveal reveal-delay-1">
+      <div class="step-num">Step 02</div>
+      <div class="step-title">Platform proficiency verified</div>
+      <div class="step-desc">Every specialist is assessed against your specific tools before they are presented to you. Marketo, Salesforce Marketing Cloud, Adobe Campaign, HubSpot. You do not train them — they arrive trained.</div>
+    </div>
+    <div class="step-card reveal reveal-delay-2">
+      <div class="step-num">Step 03</div>
+      <div class="step-title">Procurement cleared in days</div>
+      <div class="step-desc">Contractor compliance, IR35 determination, and misclassification documentation handled for your jurisdiction. Your procurement team can approve within days — not the months it took last time.</div>
+    </div>
+    <div class="step-card reveal reveal-delay-3">
+      <div class="step-num">Step 04</div>
+      <div class="step-title">In your stand-up by week three</div>
+      <div class="step-desc">The specialist joins your team, logs into your systems, takes their first brief from your team lead. By week three they are running Marketo workflows or building ABM sequences — not learning your stack.</div>
+    </div>
+    <div class="step-card reveal reveal-delay-4">
+      <div class="step-num">Step 05</div>
+      <div class="step-title">Scale without a headcount review</div>
+      <div class="step-desc">Add capacity when the programme expands. Pull it back when the project closes. No redundancy process. No headcount review. A named account manager maintains continuity if anything changes.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 8: TESTIMONIALS -->
+<section class="section" id="testimonials" aria-label="Client results">
+  <p class="section-label reveal">What enterprise teams report back</p>
+  <h2 class="reveal reveal-delay-1">Real outcomes. Named accounts. Before-and-after metrics.</h2>
+
+  <div class="video-testi-grid reveal">
+    <div class="video-testi-card">
+      <div class="vt-thumb" data-src="VIDEO_TESTIMONIAL_1">
+        <div class="vt-initials">SH</div>
+        <div class="vt-play">▶</div>
+        <div class="vt-duration">1:52</div>
+        <div class="vt-name-bar">Sarah H. — VP Marketing, Cisco</div>
+      </div>
+      <p class="vt-quote">"We scaled our marketing output by 40 percent without adding permanent headcount. The transformation programme completed on time and on budget. I would not have been able to report that to the board without Algomarketing."</p>
+      <div class="vt-attr">
+        <strong>Sarah H., VP Marketing</strong>
+        <span>Cisco</span>
+      </div>
+    </div>
+    <div class="video-testi-card">
+      <div class="vt-thumb" data-src="VIDEO_TESTIMONIAL_2">
+        <div class="vt-initials">MW</div>
+        <div class="vt-play">▶</div>
+        <div class="vt-duration">2:14</div>
+        <div class="vt-name-bar">Marcus W. — Head of Demand Generation, Zoom</div>
+      </div>
+      <p class="vt-quote">"We activated our ABM programme against 50 target accounts three months ahead of schedule. The Marketo specialist understood our stack from day one. We did not lose a single week to onboarding."</p>
+      <div class="vt-attr">
+        <strong>Marcus W., Head of Demand Generation</strong>
+        <span>Zoom</span>
+      </div>
+    </div>
+    <div class="video-testi-card">
+      <div class="vt-thumb" data-src="VIDEO_TESTIMONIAL_3">
+        <div class="vt-initials">PK</div>
+        <div class="vt-play">▶</div>
+        <div class="vt-duration">1:44</div>
+        <div class="vt-name-bar">Priya K. — Marketing Operations Director, Stripe</div>
+      </div>
+      <p class="vt-quote">"The Marketo migration was completed one month ahead of deadline. I was expecting a 90-day ramp-up. The team understood the platform and our ICP before the first stand-up. The board signed it off as a success."</p>
+      <div class="vt-attr">
+        <strong>Priya K., Marketing Operations Director</strong>
+        <span>Stripe</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: QUALIFICATION ENGINE -->
+<section class="section" aria-label="Who this is for">
+  <p class="section-label reveal">Who this is built for</p>
+  <h2 class="reveal reveal-delay-1">Three profiles that fit. One that does not.</h2>
+
+  <div class="qual-grid">
+    <div class="qual-profiles">
+      <div class="qual-profile fit reveal">
+        <div class="qual-icon">✅</div>
+        <div>
+          <div class="qual-title">The Headcount Freeze</div>
+          <div class="qual-desc">You have board approval for a transformation programme. Permanent headcount is frozen. You need specialists inside your team this quarter — not next financial year. The project cannot wait 12 weeks for a permanent hire to clear notice.</div>
+        </div>
+      </div>
+      <div class="qual-profile fit reveal reveal-delay-1">
+        <div class="qual-icon">✅</div>
+        <div>
+          <div class="qual-title">The New CMO Window</div>
+          <div class="qual-desc">A new CMO or VP Marketing has just joined. They need to staff up fast and move fast. The 90-day onboarding window is when the team is built. Waiting 12 weeks for permanent hires means the window closes before the function is running.</div>
+        </div>
+      </div>
+      <div class="qual-profile fit reveal reveal-delay-2">
+        <div class="qual-icon">✅</div>
+        <div>
+          <div class="qual-title">The Platform Migration</div>
+          <div class="qual-desc">You are migrating to Marketo, Salesforce Marketing Cloud, or Adobe Campaign. You need specialists who understand the platform natively — not someone who will learn on the job while your programme timeline slips.</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-3">
+      <div class="qual-nofit-box">
+        <div class="qual-nofit-title">❌ Not a fit</div>
+        <div class="qual-nofit-desc">
+          <strong>The generalist search.</strong><br><br>
+          If you are looking for general marketing support without a defined stack, specific programme scope, or enterprise-grade compliance requirement — Algomarketing is not your best option. Our specialists are deployed for defined programmes with specific platform requirements. If you are at the early exploration stage without a brief, come back when you have one.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: REVENUE GAP -->
+<section class="section" aria-label="Revenue gap">
+  <p class="section-label reveal">The cost of the current model</p>
+  <h2 class="reveal reveal-delay-1">What your enterprise accounts are worth — and what delays are costing you</h2>
+  <p class="reveal reveal-delay-2">The £800,000 delayed revenue figure is not unusual. Here is what the calculation looks like for a typical enterprise marketing team running at capacity.</p>
+
+  <table class="gap-table reveal reveal-delay-3">
+    <thead>
+      <tr>
+        <th>Situation</th>
+        <th>Timeline with permanent hire</th>
+        <th>Timeline with embedded talent</th>
+        <th class="gap-cost">Revenue at risk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Q4 campaign window — missed because team could not staff up fast enough</td>
+        <td>4 months to hire + 90-day ramp = campaign missed</td>
+        <td>3 weeks to deploy, ready week one</td>
+        <td class="gap-cost">~£800,000 in delayed revenue</td>
+      </tr>
+      <tr>
+        <td>Account Based Marketing programme running at 60% capacity — specialists not in seat</td>
+        <td>6-month hire cycle means programme starts in H2</td>
+        <td>Specialists embedded by end of month one</td>
+        <td class="gap-cost">£5M in Target Account value stalled</td>
+      </tr>
+      <tr>
+        <td>Senior marketer hired permanently — 90-day stack ramp-up</td>
+        <td>£120,000 per year salary + 90 days unproductive</td>
+        <td>Specialist deployed at ~⅓ of permanent cost, productive day one</td>
+        <td class="gap-cost">£50,000 per week in programme delay cost</td>
+      </tr>
+      <tr>
+        <td>Transformation programme delayed — every week the brief sits unfilled</td>
+        <td>8 to 12 week recruitment timeline, zero output in that window</td>
+        <td>3 weeks from brief to specialist on-site</td>
+        <td class="gap-cost">£50,000 per week in foregone efficiency</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SECTION 11: OFFER -->
+<section class="offer-section" id="offer" aria-label="Everything included with Algomarketing">
+  <div class="offer-inner">
+    <p class="section-label reveal">What you get</p>
+    <h2 class="reveal reveal-delay-1">Everything included with Algomarketing.</h2>
+    <p class="reveal reveal-delay-2">Every engagement includes the full embedded talent infrastructure — not a shortlist and a handshake.</p>
+
+    <div class="offer-grid">
+      <div class="offer-card reveal">
+        <div class="offer-card-icon">🎯</div>
+        <div class="offer-card-title">AI-Proficient Specialist Matching</div>
+        <div class="offer-card-desc">48-hour shortlist of specialists pre-vetted against your specific stack. Marketo, Salesforce Marketing Cloud, Adobe Campaign, HubSpot, and AI workflow tools.</div>
+        <div class="offer-card-pain"><strong>Without this:</strong> you would run a 12-week recruitment process and receive CVs from candidates who will learn your platform on the job.</div>
+      </div>
+      <div class="offer-card reveal reveal-delay-1">
+        <div class="offer-card-icon">⚡</div>
+        <div class="offer-card-title">3-Week Deployment Guarantee</div>
+        <div class="offer-card-desc">Specialist embedded in your team, attending your stand-ups, working in your systems — within three weeks of the brief. Campaign windows stay open.</div>
+        <div class="offer-card-pain"><strong>Without this:</strong> you would lose the Q3 or Q4 campaign window while the hire is still clearing notice at their previous employer.</div>
+      </div>
+      <div class="offer-card reveal reveal-delay-2">
+        <div class="offer-card-icon">🌍</div>
+        <div class="offer-card-title">Global Compliance Management</div>
+        <div class="offer-card-desc">Contractor compliance handled across 32 countries. IR35, misclassification risk, local labour law — all covered. Your procurement team can approve in days.</div>
+        <div class="offer-card-pain"><strong>Without this:</strong> your procurement team would block the hire on compliance risk — as they did when you tried freelancers before.</div>
+      </div>
+      <div class="offer-card reveal reveal-delay-3">
+        <div class="offer-card-icon">📈</div>
+        <div class="offer-card-title">Flexible Scale — No Redundancy Process</div>
+        <div class="offer-card-desc">Scale your embedded team up or down as programme demands change. No headcount review. No redundancy cost. No knowledge lost — continuity protected through handover protocols.</div>
+        <div class="offer-card-pain"><strong>Without this:</strong> you would hire permanently, the specialist would leave after 18 months, and you would start the cycle again.</div>
+      </div>
+      <div class="offer-card reveal">
+        <div class="offer-card-icon">🤖</div>
+        <div class="offer-card-title">AI Marketing Workflow Capability</div>
+        <div class="offer-card-desc">Specialists trained in AI-assisted content production, campaign optimisation, and data workflow automation. Not generalists with a ChatGPT account — trained operators.</div>
+        <div class="offer-card-pain"><strong>Without this:</strong> your ABM programme would run at 60% capacity while the specialist learns AI tooling on the job.</div>
+      </div>
+      <div class="offer-card reveal reveal-delay-1">
+        <div class="offer-card-icon">🔗</div>
+        <div class="offer-card-title">Dedicated Account Management</div>
+        <div class="offer-card-desc">A named account manager who monitors performance, manages specialist continuity, and can backfill within 72 hours if your specialist is unavailable. You are never back to square one.</div>
+        <div class="offer-card-pain"><strong>Without this:</strong> you would lose all built knowledge when a contractor leaves — and restart the entire onboarding process from scratch.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 12: IMPLEMENTATION TIMELINE -->
+<section class="section" aria-label="First 90 days">
+  <p class="section-label reveal">What the first 90 days look like</p>
+  <h2 class="reveal reveal-delay-1">From brief to full programme velocity in 90 days</h2>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot">W1</div>
+      <div class="timeline-content">
+        <div class="timeline-period">Week one</div>
+        <div class="timeline-title">Brief, match, shortlist</div>
+        <div class="timeline-desc">We take your brief. 48 hours to a shortlist of stack-matched specialists. You select. Compliance cleared in parallel.</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-dot">W3</div>
+      <div class="timeline-content">
+        <div class="timeline-period">Week three</div>
+        <div class="timeline-title">Specialist on-site</div>
+        <div class="timeline-desc">Embedded specialist joins your stand-ups, logs into your systems, takes their first brief from your team lead. Productive from day one — not month four.</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-2">
+      <div class="timeline-dot">M2</div>
+      <div class="timeline-content">
+        <div class="timeline-period">Month two</div>
+        <div class="timeline-title">Programme in full execution</div>
+        <div class="timeline-desc">The specialist is running your Marketo workflows, building your ABM sequences, or executing your campaign calendar — depending on brief. Output is measurable by week six.</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-3">
+      <div class="timeline-dot">M3</div>
+      <div class="timeline-content">
+        <div class="timeline-period">Month three</div>
+        <div class="timeline-title">Board-ready metrics</div>
+        <div class="timeline-desc">You have output data to report against your transformation KPIs. Campaign production time, ABM account coverage, platform integration status — all measurable, all attributable.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 13: FAQ -->
+<section class="section" id="faq" aria-label="Frequently asked questions">
+  <p class="section-label reveal">The real questions procurement asks</p>
+  <h2 class="reveal reveal-delay-1">What enterprise buyers actually want to know</h2>
+
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <div class="faq-q">Our procurement team has a preferred supplier list. If you are not on it, we cannot use you.</div>
+      <div class="faq-a">We are on preferred supplier lists at Google, Zoom, Stripe, and Cisco. The fastest path to preferred supplier status at your organisation is a pilot engagement — one specialist, one programme, defined scope and timeline. Most procurement teams can approve a pilot as a defined project even before formal supplier onboarding is complete. We have a compliance pack, insurance certificates, and procurement documentation ready within 48 hours of request.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-1">
+      <div class="faq-q">I am worried about continuity. If the specialist leaves, I am back to square one.</div>
+      <div class="faq-a">Every engagement has a named account manager whose role is continuity. If your specialist is unavailable, we backfill within 72 hours using a pre-briefed team member. All programme documentation, workflows, and account knowledge are maintained in a structured handover protocol — not in a single specialist's head. You are never back to square one.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <div class="faq-q">My CFO is nervous about contractor versus employee misclassification. We had an IR35 issue three years ago.</div>
+      <div class="faq-a">Globally compliant contractor management is built into every Algomarketing engagement. We manage IR35 determination, status assessments, local labour law compliance, and contractor registration across 32 countries. Your legal team can review our compliance framework before the engagement starts. We have handled this for organisations in every major jurisdiction — including post-IR35 reform UK enterprises.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-3">
+      <div class="faq-q">The last agency we used charged us a premium and delivered someone who needed six weeks to get up to speed.</div>
+      <div class="faq-a">Algomarketing specialists are assessed against your specific platform before they are presented to you. We do not send generalists and ask you to train them. If a specialist does not reach productive output within two weeks of embedding, we backfill at no additional cost. We have delivered Marketo projects one month ahead of deadline for organisations of nearly 200,000 employees. That is the standard we hold our specialists to.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-4">
+      <div class="faq-q">I need to see a case study from a company like mine before I proceed.</div>
+      <div class="faq-a">We have delivered embedded talent programmes for Google, Zoom, Stripe, OpenAI, and Cisco. We have a library of case studies across technology, financial services, and professional services verticals. On the demo call we will walk you through a case study from your sector — including the brief, the stack, the timeline, and the output metrics. We do not do proof of concepts with your enterprise account. We show you proof of concepts from companies like yours first.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 14: GUARANTEE -->
+<section class="guarantee-section" aria-label="The Algomarketing guarantee">
+  <div class="guarantee-inner">
+    <div class="guarantee-badge reveal">✓ The Algomarketing Performance Guarantee</div>
+    <h2 class="reveal reveal-delay-1">Productive in two weeks. Or we backfill — at no charge.</h2>
+    <p class="reveal reveal-delay-2">
+      Every Algomarketing specialist is deployed against your specific stack and programme scope. If your embedded specialist does not reach productive output within two weeks of joining your team, we backfill immediately — at no additional cost to you. No debates. No invoice disputes. We guarantee time-to-productivity because we pre-qualify every specialist against your exact platform requirements before we present them to you.
+    </p>
+    <p class="reveal reveal-delay-3" style="margin-top:16px;">
+      You keep the programme running. We keep the specialist accountable. That is the guarantee.
+    </p>
+  </div>
+</section>
+
+<!-- SECTION 15: FINAL CTA -->
+<section class="final-cta" id="book-demo" aria-label="Book a demo">
+  <div class="final-cta-inner">
+    <p class="section-label reveal" style="text-align:center;">Ready to move fast?</p>
+    <h2 class="reveal reveal-delay-1">
+      Every week your programme sits unfilled costs £50,000 in foregone efficiency.<br>
+      <span style="color:var(--accent);">Get your first specialist on-site in three weeks.</span>
+    </h2>
+    <p class="reveal reveal-delay-2">
+      Book a 30-minute demo. We will walk you through a case study from your sector, confirm stack fit, and outline what a pilot engagement looks like — including timeline, compliance clearance, and first-week deliverables.
+    </p>
+    <div class="reveal reveal-delay-3">
+      <a href="#" class="btn-primary">Book a Demo</a>
+    </div>
+    <p class="reveal reveal-delay-4" style="margin-top:20px; font-size:14px; color:var(--text-muted);">
+      Trusted by 200+ enterprise companies across 27 countries — Google, Zoom, Stripe, OpenAI, Cisco
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Algomarketing. Global marketing operations and embedded talent for enterprise.</p>
+  <p style="margin-top:8px; font-size:12px; opacity:0.6;">This is a mockup of what an Algomarketing customer acquisition page could look like. Strategy and mockup prepared by Jean Mundabi Fala, MDB Growth Capital.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Trigger hero reveals immediately
+  setTimeout(() => {
+    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
+  }, 100);
+</script>
+
+</body>
+</html>

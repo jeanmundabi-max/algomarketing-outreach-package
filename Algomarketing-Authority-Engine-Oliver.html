@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Authority Engine — Algomarketing | Prepared for Oliver Hassell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a14;
+    --surface: #0d1520;
+    --surface2: #111d2e;
+    --border: #1a2840;
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --accent3: #8b5cf6;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --green: #10b981;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(6,10,20,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar-brand { font-weight: 700; font-size: 15px; }
+  .topbar-brand span { color: var(--accent); }
+  .topbar-meta { font-size: 13px; color: var(--text-muted); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 100px 40px 80px;
+  }
+
+  /* HEADER */
+  .doc-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .doc-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    margin-bottom: 16px;
+  }
+  .doc-title {
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+  .doc-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
+    margin-top: 20px;
+  }
+  .doc-meta span { display: flex; gap: 8px; }
+  .doc-meta strong { color: var(--text); min-width: 100px; }
+
+  /* SCORE BADGE */
+  .score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.25);
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin-bottom: 40px;
+  }
+  .score-badge .score { font-size: 22px; font-weight: 800; color: var(--green); }
+  .score-badge .label { font-size: 13px; color: var(--text-muted); }
+  .score-badge .rec { font-size: 13px; font-weight: 700; color: var(--green); }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-num {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .section p {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* CALL-OUT BLOCKS */
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  .callout.accent { border-color: rgba(59,130,246,0.25); background: rgba(59,130,246,0.05); }
+  .callout.red { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
+  .callout.green { border-color: rgba(16,185,129,0.25); background: rgba(16,185,129,0.04); }
+
+  /* THREE SIGNALS */
+  .signals-grid {
+    display: grid;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .signal-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+  }
+  .signal-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .signal-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .signal-card p { font-size: 14px; color: var(--text-muted); }
+
+  /* AUTHORITY ENGINE COMPONENTS */
+  .components-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .component-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 16px;
+    align-items: start;
+  }
+  .component-num {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-top: 3px;
+  }
+  .component-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .component-content p { font-size: 13px; color: var(--text-muted); }
+
+  /* TIMELINE */
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 0 20px;
+    margin-top: 24px;
+  }
+  .tl-period {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    padding-top: 4px;
+  }
+  .tl-content { font-size: 14px; color: var(--text-muted); padding: 4px 0 16px; border-bottom: 1px solid var(--border); }
+  .timeline-row:last-child .tl-content { border-bottom: none; }
+
+  /* CTA SECTION */
+  .cta-block {
+    background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
+    border: 1px solid rgba(59,130,246,0.25);
+    border-radius: 14px;
+    padding: 36px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .cta-block p { font-size: 15px; color: var(--text-muted); max-width: 440px; margin: 0 auto 24px; }
+  .cta-block a.btn {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.2s;
+    margin-bottom: 12px;
+  }
+  .cta-block a.btn:hover { background: #2563eb; transform: translateY(-1px); }
+  .cta-block .cta-alt { font-size: 13px; color: var(--text-muted); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 80px 24px 60px; }
+    .topbar { padding: 14px 20px; }
+    .doc-meta { grid-template-columns: 1fr; }
+    .timeline-row { grid-template-columns: 1fr; }
+    .tl-period { padding-bottom: 4px; }
+    .cta-block { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">MDB <span>Growth Capital</span></div>
+  <div class="topbar-meta">Authority Engine Diagnosis — Algomarketing</div>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-eyebrow">Authority Engine Sendable — 8-Section Diagnosis</div>
+    <h1 class="doc-title">Algomarketing's Authority Gap:<br>Why Enterprise CMOs Find HelloKindred First</h1>
+    <div class="doc-meta">
+      <span><strong>Prepared for:</strong> Oliver Hassell, Head of Sales and Marketing</span>
+      <span><strong>Prepared by:</strong> Jean Mundabi Fala, MDB Growth Capital</span>
+      <span><strong>Date:</strong> 18 May 2026</span>
+      <span><strong>Format:</strong> 8-section authority gap diagnosis</span>
+    </div>
+  </div>
+
+  <!-- SCORE BADGE -->
+  <div class="score-badge">
+    <div class="score">6/7</div>
+    <div>
+      <div class="rec">Authority Engine: RECOMMENDED</div>
+      <div class="label">Algomarketing meets 6 of 7 Authority Engine fit signals</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-num">Section 1</div>
+    <div class="section-title">The Situation</div>
+    <p>Algomarketing has built a remarkable business over 10 years. Google, Zoom, Stripe, Cisco, OpenAI — these are not small wins. They represent a track record that most marketing staffing firms would spend decades chasing.</p>
+    <p>But every one of those clients came through relationships and referrals.</p>
+    <p>The JD for the Senior Growth Manager role says it directly: "Over the past 10 years, Algo has grown organically through referrals, relationships, and reputation."</p>
+    <p>That is not a criticism. It is a description of a very common pattern for Business to Business service firms at Algomarketing's stage.</p>
+    <p>The challenge is what happens next.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-num">Section 2</div>
+    <div class="section-title">The Authority Gap</div>
+    <p>Enterprise marketing leaders researching embedded AI marketing talent in 2026 conduct the same research journey as any other major procurement decision. They Google the firm. They check LinkedIn. They look for case studies, testimonials, and thought leadership that tells them whether this partner understands their world.</p>
+    <p>What they find when they search for Algomarketing is a professional website, solid delivery proof, and a client logo bar.</p>
+    <p>What they also find — when they search for "enterprise embedded marketing talent UK" or "AI-proficient marketing specialists" — is HelloKindred's industry reports, Stopgap's blog content, and Major Players' brand recognition.</p>
+    <div class="callout red">
+      This is the authority gap. Algomarketing wins when it gets in the room. The authority gap means the room fills with competitors before Algomarketing is invited.
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-num">Section 3</div>
+    <div class="section-title">What Algomarketing's Enterprise Buyers Need to See</div>
+    <p>Enterprise Business to Business buyers conduct 13 digital touchpoints before engaging a new service provider. Those touchpoints happen across LinkedIn, organic search, email, and peer networks.</p>
+    <p>Algomarketing is present at touchpoint 13: the referral. It is absent at touchpoints 1 through 12.</p>
+    <p>The authority infrastructure that fills those 12 touchpoints is not complex. It is systematic. And its absence is costing Algomarketing enterprise mandates it would win if it could get in the room — from companies like XTM International, ComplyAdvantage, Personio, Quantexa, and Darktrace. All active buyers in Algomarketing's Ideal Client Profile. None of them currently in a conversation with Algomarketing's team.</p>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-num">Section 4</div>
+    <div class="section-title">The Three Signals That Matter</div>
+    <p>The authority gap is not caused by poor content quality. Algomarketing's existing case studies are credible. The AI-proficient embedded model is a genuine differentiation story.</p>
+    <p>The gap is caused by three structural absences:</p>
+    <div class="signals-grid">
+      <div class="signal-card">
+        <div class="signal-label">Signal 1 — Missing</div>
+        <h4>No Content Flywheel</h4>
+        <p>Enterprise CMOs and VP Marketing leaders need to encounter Algomarketing content regularly — not when they are actively searching for a supplier, but when they are solving marketing problems in their day-to-day. A content flywheel means posts, articles, and case studies showing up in their feed consistently. The audience grows. The authority compounds.</p>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">Signal 2 — Missing</div>
+        <h4>No Nurture Infrastructure</h4>
+        <p>The enterprise procurement cycle for a major staffing relationship runs 6 to 18 months. A prospect who encounters Algomarketing in month 1 but is not in a buying window until month 12 needs something to bridge that gap. Without a nurture sequence, the prospect forgets. When the buying window opens, they call whoever is most present in their memory.</p>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">Signal 3 — Missing</div>
+        <h4>No Warm-to-Hot Signal Tracking</h4>
+        <p>Enterprise marketing leaders who have engaged with Algomarketing content, attended an event, or replied to a cold email are warm prospects. Without a lead scoring system, they are indistinguishable from cold prospects. When the buying window opens, the sales team does not know who to prioritise.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <div class="section-num">Section 5</div>
+    <div class="section-title">What the Authority Engine Looks Like for Algomarketing</div>
+    <p>This is what MDB would install — specifically for Algomarketing's enterprise audience:</p>
+    <div class="components-list">
+      <div class="component-item">
+        <div class="component-num">01</div>
+        <div class="component-content">
+          <h4>LinkedIn Content Flywheel (weeks 1 to 4: strategy and calendar built, running from week 5)</h4>
+          <p>Weekly posts on topics enterprise CMOs care about: AI marketing tools, headcount-free capability scaling, platform migration challenges, embedded talent versus agency trade-offs. Posts are buyer-useful observations — not company announcements. Target audience: CMOs, VP Marketing, Marketing Directors at enterprise technology and financial services companies. Output: growing LinkedIn audience of the exact buyers Algomarketing wants to reach.</p>
+        </div>
+      </div>
+      <div class="component-item">
+        <div class="component-num">02</div>
+        <div class="component-content">
+          <h4>20-Week Email Nurture Sequence (built once, runs permanently)</h4>
+          <p>20 emails over 5 months to opted-in enterprise marketing leaders. Zero sales pitches. Pure value delivery: how to spec a contingent marketing brief, what AI proficiency means in a 2026 marketing team, how to manage contractor compliance across jurisdictions. Week 21: the first commercial email. The subscriber has received 20 pieces of value. The call to action is earned. Output: 150 to 500 warm prospects in a nurture sequence within 12 months.</p>
+        </div>
+      </div>
+      <div class="component-item">
+        <div class="component-num">03</div>
+        <div class="component-content">
+          <h4>Micro-Budget Retargeting (£5 to £10 per day on LinkedIn)</h4>
+          <p>Retargets anyone who has visited the Algomarketing website, engaged with a LinkedIn post, or opened a nurture email. Keeps Algomarketing visible to warm prospects between active touches. Costs less than one coffee per day per prospect. Output: Algomarketing appears in the LinkedIn feeds of the exact people most likely to buy.</p>
+        </div>
+      </div>
+      <div class="component-item">
+        <div class="component-num">04</div>
+        <div class="component-content">
+          <h4>Lead Scoring System (installed in parallel with outbound channel)</h4>
+          <p>Categorises the email list and LinkedIn audience into cold, warm, and hot. Hot criteria: visited the pricing or services page plus opened 3 nurture emails plus engaged with a LinkedIn post in the last 30 days. Sales team alerted only when a prospect crosses the threshold. Output: Oliver's commercial team focuses on prospects with demonstrated intent, not the whole list.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <div class="section-num">Section 6</div>
+    <div class="section-title">The Compounding Advantage</div>
+    <p>HelloKindred's content programme has been running for 3 to 5 years. Their domain authority on search terms relevant to embedded marketing talent is established. That advantage compounded month by month.</p>
+    <p>Algomarketing starts from a lower base but has a differentiation story — AI-proficient talent, 32-country deployment, Google and Zoom client proof — that HelloKindred cannot match.</p>
+    <div class="callout accent">
+      The revenue opportunity: 2 new enterprise mandates at Algomarketing's billing level (£30,000 to £100,000 per account annually) = £60,000 to £200,000 in new annual billings. The authority programme is what makes those mandates reachable from accounts that have never heard of Algomarketing.
+    </div>
+    <div class="timeline-row">
+      <div class="tl-period">Month 6</div>
+      <div class="tl-content">1,000 to 2,000 LinkedIn followers in the enterprise CMO target audience. 200 to 400 nurture subscribers. First organic inbound inquiries.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="tl-period">Month 12</div>
+      <div class="tl-content">Consistent organic inbound. 20 to 40 hot prospects identified per quarter by lead scoring. Channel runs independently of any one person's time.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section">
+    <div class="section-num">Section 7</div>
+    <div class="section-title">Why This Matters Now</div>
+    <p>The incoming Senior Growth Manager will spend months 1 to 3 building infrastructure from scratch — database, content, channel. Nothing commercial until month 5 or 6 at best.</p>
+    <p>If the Authority Engine is already running when they join, the hire manages a live programme from day one. The LinkedIn programme is 8 weeks in. The nurture sequence has 50 to 100 opted-in subscribers. Lead scoring is identifying hot prospects for the sales team.</p>
+    <p>The infrastructure is not the hire's job. Building the first version of it is MDB's job.</p>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section">
+    <div class="section-num">Section 8</div>
+    <div class="section-title">The Next Step</div>
+    <p>The simplest way to see whether the Authority Engine makes sense for Algomarketing is a 15-minute call.</p>
+    <p>In 15 minutes, we can cover:</p>
+    <div class="callout">
+      <p style="color:var(--text);margin-bottom:8px;font-size:15px;">1. The specific content themes that would resonate with Algomarketing's enterprise CMO audience</p>
+      <p style="color:var(--text);margin-bottom:8px;font-size:15px;">2. What the first 20 nurture emails would cover</p>
+      <p style="color:var(--text);font-size:15px;">3. The lead scoring criteria that would identify which enterprise marketing leaders are ready to engage</p>
+    </div>
+    <p>No commitment required. No proposal on the call.</p>
+    <p>If the conversation is useful, Oliver can decide whether to move forward. If it is not the right fit right now, the diagnosis in this document is useful regardless.</p>
+  </div>
+
+  <!-- CTA BLOCK -->
+  <div class="cta-block">
+    <h3>Book 15 minutes with Jean</h3>
+    <p>No commitment. No proposal on the call. Just the three questions above — answered specifically for Algomarketing.</p>
+    <a href="https://cal.com/jean-m-8f4kbr/15min" target="_blank" class="btn">Book 15 Minutes: cal.com/jean-m-8f4kbr/15min</a>
+    <div class="cta-alt">Or reply directly and Jean will send the 30-company enterprise target list first — so Oliver can see the kind of account intelligence MDB builds before deciding anything.</div>
+  </div>
+
+  <footer>
+    Strategy and GTM research by Jean Mundabi Fala, MDB Growth Capital<br>
+    Prepared for Oliver Hassell, Algomarketing — May 2026
+  </footer>
+
+</div>
+
+</body>
+</html>
